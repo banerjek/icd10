@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>ICD-10 and MeSH Lookup</title> 
+<META name="Author" content="Kyle Banerjee" />
+<META NAME="KEYWORDS" CONTENT="International Statistical Classification of Diseases Codes, Medical Subject Headings" />
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1" />
+<LINK TITLE="new" rel="stylesheet" href="includes/default.css" TYPE="text/css" />
+</head>
+
+<body onload="document.f.userinput.focus()">
+<div id='results'>
+</div>
+
+<div id='nav'>
+				<form name="f" onSubmit="process(document.f); return false;">
+								<input type="text" name="userinput" size="25" onKeyUp="process(document.f);self.focus();document.f.userinput.focus();" />
+								<input type="submit" value="Find It!">
+								<br /><b>Enter Query Above</b>
+								<p />
+								<b>Search Options</b>
+								<p />
+								<input type="radio" name="searchtype" value="icd10" onClick="process(document.f);" />ICD-10
+								<input type="radio" name="searchtype" value="mesh" onClick="process(document.f);" />MeSH
+
+				</form>
+</div>
+<script language="javascript" src="includes/process.js"></script>
+<script language="javascript" src="includes/utility.js"></script>
+<script language="javascript" src="includes/mesh.js"></script>
+
+
+</body>
+</html>
