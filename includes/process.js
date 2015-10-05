@@ -105,7 +105,7 @@ switch (search) {
 				heading = resultarray[x];	
 				splitheading = heading.split("\t");
 
-				webbase = 'https://apps2.nlm.nih.gov/medlineplus/services/mpconnect.cfm?mainSearchCriteria.v.cs=2.16.840.1.113883.6.90&mainSearchCriteria.v.c=';
+				webbase = 'https://www.cms.gov/medicare-coverage-database/staticpages/icd-10-code-lookup.aspx?KeyWord=';
 
 				id_url = '<a href="javascript:OpenWin(\'' + webbase
 					+ splitheading[0] 
