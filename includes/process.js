@@ -60,7 +60,7 @@ switch (search) {
 	case "mesh":
 		{
 		resultarray = mesh.split("\@");
-		founditems += '<center><table width="65%">\n';
+		founditems += '<center><table width="65%"><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (regexsearch.exec(resultarray[x])) {
@@ -76,7 +76,7 @@ switch (search) {
 					+ '</a></td></tr>'
 					+ '\n';
 
-				if (found % 2 == 1) {
+				if (found % 2 == 0) {
 					founditems += '<tr><td style="background: #c6d6ee;">' + id_url;
 					}
 					else
@@ -86,9 +86,47 @@ switch (search) {
 					}
 				}
 			}
-		founditems += '</table></center><p />'
-		+'<center class="red"><b>Click on any field above for '
-		+'detailed information from NLM</b>';
+		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from NLM</b></center></td></tr></table>';
+
+    if (found == 0) {
+			founditems = notfound();
+			}
+		return founditems;
+		break;
+		}
+	case "icd10":
+		{
+		resultarray = diseases_and_injuries.split("\@");
+		founditems += '<center><table width="65%"><tr><th>Search Results</th></tr>\n';
+
+		for (x=0; x<=resultarray.length-1; x++) {
+			if (regexsearch.exec(resultarray[x])) {
+				found += 1;
+				heading = resultarray[x];	
+				splitheading = heading.split("\t");
+
+				webbase = 'https://apps2.nlm.nih.gov/medlineplus/services/mpconnect.cfm?mainSearchCriteria.v.cs=2.16.840.1.113883.6.90&mainSearchCriteria.v.c=';
+
+				id_url = '<a href="javascript:OpenWin(\'' + webbase
+					+ splitheading[0] 
+					+ '\');">'
+					+ splitheading[0] 
+					+ '</a> '
+					+ splitheading[1]
+					+ '</td></tr>'
+					+ '\n';
+
+				if (found % 2 == 0) {
+					founditems += '<tr><td style="background: #c6d6ee;">' + id_url;
+					}
+					else
+					{
+					founditems += '<tr><td>'
+					+ id_url;
+					}
+				}
+			}
+		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from Medline</b></center></td></tr></table>';
 
     if (found == 0) {
 			founditems = notfound();
@@ -97,43 +135,6 @@ switch (search) {
 		break;
 		}
 	}
-
-  	founditems +='<center><table width="65%">\n';
-
-	for (x=0; x<=resultarray.length-1; x++) {
-		if (regexsearch.exec(resultarray[x])) {
-			found += 1;
-			cellarray = resultarray[x].split("\t");	
-
-				if (!cellarray[1]) {
-					cellarray[1] = '';
-					}
-
-			if (found % 2 == 1) {
-				founditems += '<tr><td style="background: #c6d6ee;">'
-				+ cellarray[0]
-				+ '</td><td style="background: #c6d6ee;">'
-				+ cellarray[1]
-				+ '</td></tr>'
-				+ "\n";
-				}
-				else
-				{
-				founditems += '<tr><td>'
-				+ cellarray[0]
-				+ '</td><td>'
-				+ cellarray[1]
-				+ '</td></tr>'
-				+ "\n";
-				}
-			}
-		}
-	founditems += '</table></center>';
-
-	if (found == 0) {
-		founditems = notfound();			
-		}
-	return founditems;
 }
 
 
