@@ -11,21 +11,23 @@
 </head>
 
 <body onload="document.f.userinput.focus()">
-<div id='results'>
-</div>
 
 <div id='nav'>
+	<table class="searchform" cellpadding="2">
+	<th><center>Search Options</center></td></th>
+	<tr><td valign="top"><br />
 				<form name="f" onSubmit="process(document.f); return false;">
 								<input type="text" name="userinput" size="25" onKeyUp="process(document.f);self.focus();document.f.userinput.focus();" />
 								<input type="submit" value="Find It!">
-								<br /><b>Enter Query Above</b>
 								<p />
-								<b>Search Options</b>
-								<p />
+								<center>
 								<input type="radio" name="searchtype" value="icd10" onClick="process(document.f);" />ICD-10
 								<input type="radio" name="searchtype" value="mesh" onClick="process(document.f);" />MeSH
-
+				</center>
 				</form>
+</td></tr></table>
+</div>
+<div id='results'>
 </div>
 <script language="javascript" src="includes/process.js"></script>
 <script language="javascript" src="includes/utility.js"></script>

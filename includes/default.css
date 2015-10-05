@@ -2,8 +2,38 @@ html, body {
 				height: 100v;
 }
 
-
-div {
-    height: 50vh;
+body {
+    background: white;
+    color: black;
+    font-family: "Arial";
+    scrollbar-base-color:  #c6d6ee;
+    scrollbar-arrow-color: #000000;
 }
+
+#nav {
+				float: left;
+}
+.searchform {
+	border-top: #c6d6ee 2px solid; 
+	border-right: #c6d6ee 2px solid; 
+	border-left: #c6d6ee 2px solid; 
+	border-bottom: #c6d6ee 2px solid; 
+	border-radius: 25px;
+	font-size: 12pt;
+}
+
+
+td {
+	font-weight: bold; 
+	font-size: 10pt;
+	}
+
+th {
+	font-weight: bold; 
+	padding: 5px;
+	font-size: 12pt;
+	background: #c6d6ee;
+	border-radius: 25px 25px 5px 5px;
+	}
+
 
