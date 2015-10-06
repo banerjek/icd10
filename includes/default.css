@@ -10,10 +10,16 @@ body {
     scrollbar-arrow-color: #000000;
 }
 
+.center {
+	text-align: center;
+	}
+
 #nav {
 				float: left;
+				margin-right: 10px;
 }
-.searchform {
+
+table {
 	border-top: #c6d6ee 2px solid; 
 	border-right: #c6d6ee 2px solid; 
 	border-left: #c6d6ee 2px solid; 
@@ -22,6 +28,9 @@ body {
 	font-size: 12pt;
 }
 
+a {
+	text-decoration: none;
+	}
 
 td {
 	font-weight: bold; 
@@ -36,4 +45,13 @@ th {
 	border-radius: 25px 25px 5px 5px;
 	}
 
+th.plain {
+	border-radius: 0px 0px 0px 0px;
+}
+th.left {
+	border-radius: 25px 0px 0px 0px;
+}
+th.right {
+	border-radius: 0px 25px 0px 0px;
+}
 
