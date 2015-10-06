@@ -205,6 +205,31 @@ switch (search) {
 		return founditems;
 		break;
 		}
+	case "neoplasms":
+		{
+		resultarray = neoplasms.split("\@");
+		founditems += '<table><tr><th class="left">Neoplasm, neoplastic</th><th class="plain">Malignant Primary</th><th class="plain">Malignant Secondary</th><th class="plain">Ca in situ</th><th class="plain">Benign</th><th class="plain">Uncertain Behavior</th><th class="right">Unspecified Behavior</th></tr>\n';
+
+		for (x=0; x<=resultarray.length-1; x++) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
+				found += 1;
+				entries = resultarray[x];	
+				splitentries = entries.split("^");
+
+				for (s = 0; s < splitentries.length; s++) {
+					founditems += extractRow(found, splitentries[s]);	
+					}
+
+				}
+			}
+		founditems += '<tr><td colspan="6"><br /><center><b>Click on any link above for detailed information from Medline</b></center></td></tr></table>';
+
+    if (found == 0) {
+			founditems = notfound();
+			}
+		return founditems;
+		break;
+		}
 	}
 }
 
