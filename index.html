@@ -20,10 +20,9 @@
 								<input type="text" name="userinput" size="25" onKeyUp="process(document.f);self.focus();document.f.userinput.focus();" />
 								<input type="submit" value="Find It!">
 								<p />
-								<center>
-								<input type="radio" name="searchtype" value="icd10" onClick="process(document.f);" />ICD-10
-								<input type="radio" name="searchtype" value="mesh" onClick="process(document.f);" />MeSH
-				</center>
+								<input type="radio" name="searchtype" value="diseases_and_injuries" onClick="process(document.f);" />ICD-10 Diseases and injuries
+								<br /><input type="radio" name="searchtype" value="drugs" onClick="process(document.f);" />ICD-10 Drugs
+								<br /><input type="radio" name="searchtype" value="mesh" onClick="process(document.f);" />MeSH
 				</form>
 </td></tr></table>
 <p />
@@ -33,6 +32,7 @@
 <script language="javascript" src="includes/process.js"></script>
 <script language="javascript" src="includes/utility.js"></script>
 <script language="javascript" src="includes/diseases_and_injuries.js"></script>
+<script language="javascript" src="includes/drug.js"></script>
 <script language="javascript" src="includes/mesh.js"></script>
 
 
