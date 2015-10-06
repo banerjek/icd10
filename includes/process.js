@@ -34,6 +34,56 @@ return;
 
 }
 
+function extractRow(found, row) {
+	tablestring = '';
+	fullstring = '';
+	webbase = 'https://www.cms.gov/medicare-coverage-database/staticpages/icd-10-code-lookup.aspx?KeyWord=';
+
+	splitrow = row.split("\t");
+
+	for (fields = 1; fields < splitrow.length; fields++) {
+		tablestring = tablestring + '<td class="center"><a href="javascript:OpenWin(\'' + webbase
+			+ splitrow[fields] 
+			+ '\');">'
+			+ splitrow[fields] 
+			+ '</a> '
+			+ '</td>';
+	}
+	fullstring = splitrow[0] + tablestring;
+
+	if (found % 2 == 0) {
+		fullrow = '<tr style="background: #c6d6ee;"><td>' + fullstring + '</td></tr>';
+		}
+		else
+		{
+		fullrow = '<tr><td>' + fullstring + '</td></tr>';
+		}
+	return fullrow;
+}
+
+function searchEntry(userinput, entry) {
+	userinput = userinput.toLowerCase();
+	entry = entry.toLowerCase();
+	terms = userinput.split(" ");
+	returnfound = 0;
+
+	for (foundit = 0; foundit < terms.length; foundit++) {
+		if (terms[foundit].length > 2) {
+			var regmatch = '\\b' + terms[foundit];
+			var regexsearch = new RegExp(regmatch);
+			if (regexsearch.exec(entry)) {
+				returnfound = 1;
+			}
+			else {
+				returnfound = 0;	
+				break;
+			}
+		}
+	}
+
+return returnfound;
+}
+
 /***********************************
 ************************************
 
@@ -51,19 +101,15 @@ var founditems = '';
 var found = 0;
 var weblink = '';
 var webbase = '';
-var regmatch = '\\b' + userinput;
-var regmarc = '\\d\\d\\d';
 
-var regexsearch = new RegExp(regmatch, "i");
-var regmarcsearch = new RegExp(regmarc, "i");
 switch (search) {
 	case "mesh":
 		{
 		resultarray = mesh.split("\@");
-		founditems += '<center><table width="65%"><tr><th>Search Results</th></tr>\n';
+		founditems += '<table width="65%"><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
-			if (regexsearch.exec(resultarray[x])) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
 				found += 1;
 				heading = resultarray[x];	
 
@@ -77,7 +123,7 @@ switch (search) {
 					+ '\n';
 
 				if (found % 2 == 0) {
-					founditems += '<tr><td style="background: #c6d6ee;">' + id_url;
+					founditems += '<tr style="background: #c6d6ee;"><td>' + id_url;
 					}
 					else
 					{
@@ -94,13 +140,13 @@ switch (search) {
 		return founditems;
 		break;
 		}
-	case "icd10":
+	case "diseases_and_injuries":
 		{
 		resultarray = diseases_and_injuries.split("\@");
-		founditems += '<center><table width="65%"><tr><th>Search Results</th></tr>\n';
+		founditems += '<table width="65%"><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
-			if (regexsearch.exec(resultarray[x])) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
 				found += 1;
 				heading = resultarray[x];	
 				splitheading = heading.split("\t");
@@ -117,7 +163,7 @@ switch (search) {
 					+ '\n';
 
 				if (found % 2 == 0) {
-					founditems += '<tr><td style="background: #c6d6ee;">' + id_url;
+					founditems += '<tr style="background: #c6d6ee;"><td>' + id_url;
 					}
 					else
 					{
@@ -127,6 +173,31 @@ switch (search) {
 				}
 			}
 		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from Medline</b></center></td></tr></table>';
+
+    if (found == 0) {
+			founditems = notfound();
+			}
+		return founditems;
+		break;
+		}
+	case "drugs":
+		{
+		resultarray = drugs.split("\@");
+		founditems += '<table width="65%"><tr><th class="left">Substance</th><th class="plain">Poisoning, Accidental</th><th class="plain">Poisoning, Intentional</th><th class="plain">Poisoning, Assault</th><th class="plain">Poisoning, Undetermined</th><th class="plain">Adverse effect</th><th class="right">Underdosing</th></tr>\n';
+
+		for (x=0; x<=resultarray.length-1; x++) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
+				found += 1;
+				entries = resultarray[x];	
+				splitentries = entries.split("^");
+
+				for (s = 0; s < splitentries.length; s++) {
+					founditems += extractRow(found, splitentries[s]);	
+					}
+
+				}
+			}
+		founditems += '<tr><td colspan="6"><br /><center><b>Click on any link above for detailed information from Medline</b></center></td></tr></table>';
 
     if (found == 0) {
 			founditems = notfound();
