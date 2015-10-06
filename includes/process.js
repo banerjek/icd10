@@ -106,7 +106,7 @@ switch (search) {
 	case "mesh":
 		{
 		resultarray = mesh.split("\@");
-		founditems += '<table width="65%"><tr><th>Search Results</th></tr>\n';
+		founditems += '<table><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
@@ -143,7 +143,7 @@ switch (search) {
 	case "diseases_and_injuries":
 		{
 		resultarray = diseases_and_injuries.split("\@");
-		founditems += '<table width="65%"><tr><th>Search Results</th></tr>\n';
+		founditems += '<table><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
@@ -183,7 +183,7 @@ switch (search) {
 	case "drugs":
 		{
 		resultarray = drugs.split("\@");
-		founditems += '<table width="65%"><tr><th class="left">Substance</th><th class="plain">Poisoning, Accidental</th><th class="plain">Poisoning, Intentional</th><th class="plain">Poisoning, Assault</th><th class="plain">Poisoning, Undetermined</th><th class="plain">Adverse effect</th><th class="right">Underdosing</th></tr>\n';
+		founditems += '<table><tr><th class="left">Substance</th><th class="plain">Poisoning, Accidental</th><th class="plain">Poisoning, Intentional</th><th class="plain">Poisoning, Assault</th><th class="plain">Poisoning, Undetermined</th><th class="plain">Adverse effect</th><th class="right">Underdosing</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
