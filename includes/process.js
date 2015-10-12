@@ -69,9 +69,8 @@ function searchEntry(userinput, entry) {
 
 	for (foundit = 0; foundit < terms.length; foundit++) {
 		if (terms[foundit].length > 2) {
-			var regmatch = '\\b' + terms[foundit];
-			var regexsearch = new RegExp(regmatch);
-			if (regexsearch.exec(entry)) {
+			// regex is too slow so we use strings
+			if (entry.indexOf(terms[foundit]) > -1) {
 				returnfound = 1;
 			}
 			else {
