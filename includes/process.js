@@ -148,7 +148,7 @@ switch (search) {
 			founditems = notfound();
 			}
 
-	 if (found==1) {
+	 if (found == 1) {
 			found = 0;
 			weblink='http://www.nlm.nih.gov/cgi/mesh/2015/MB_cgi?term='
 			+ heading; 
