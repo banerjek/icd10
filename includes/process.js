@@ -34,6 +34,17 @@ return;
 
 }
 
+function getPage(sURL) {
+
+	document.getElementById('results').innerHTML = document.getElementById('results').innerHTML + '<p /><b>'
+
+  var wind= window.open(sURL, 'NewWindow', 'width=600,height=600,scrollbars=yes,resizable=yes');
+   wind.focus();
+   if (wind.opener == null){
+         wind.opener = self;
+   }
+}
+
 function extractRow(found, row) {
 	tablestring = '';
 	fullstring = '';
@@ -136,6 +147,16 @@ switch (search) {
     if (found == 0) {
 			founditems = notfound();
 			}
+
+	 if (found==1) {
+			found = 0;
+			weblink='http://www.nlm.nih.gov/cgi/mesh/2015/MB_cgi?term='
+			+ heading; 
+			getPage(weblink);
+			founditems+='<p /><b>Only one match detected, automatically opening window. Retrieving information from the National Library of Medicine...... <p />All NLM data information appears in the same window, so this program will not open multiple windows.  </b>';
+			return founditems;
+	 	}
+		
 		return founditems;
 		break;
 		}
