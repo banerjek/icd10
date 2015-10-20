@@ -123,7 +123,7 @@ switch (search) {
 				found += 1;
 				heading = resultarray[x];	
 
-				webbase = 'http://www.nlm.nih.gov/cgi/mesh/2013/MB_cgi?term=';
+				webbase = 'http://www.nlm.nih.gov/cgi/mesh/2015/MB_cgi?term=';
 
 				id_url = '<a href="javascript:OpenWin(\'' + webbase
 					+ heading
