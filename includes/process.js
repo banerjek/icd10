@@ -49,7 +49,7 @@ function meshSubheadings() {
 	var found = 0;
 	var headingarray = [];
 	resultarray = mesh_subheadings.split("\@");
-	founditems = '<table><tr><th>Abbreviation</th><th>Subheading</th></tr>\n';
+	founditems = '<table><tr><th class="left">Abbreviation</th><th class="right">Subheading</th></tr>\n';
 
 	for (x=0; x<=resultarray.length-1; x++) {
 		found += 1;
@@ -57,11 +57,11 @@ function meshSubheadings() {
 		headingarray = heading.split("\t");
 
 		if (found % 2 == 0) {
-			founditems += '<tr><td style="background: #c6d6ee;">' + headingarray[0] + '</td><td style="background: #c6d6ee;">' + headingarray[1];
+			founditems += '<tr><td style="background: #c6d6ee;"><center>' + headingarray[0] + '</center></td><td style="background: #c6d6ee;">' + headingarray[1];
 			}
 			else
 			{
-			founditems += '<tr><td>' + headingarray[0] + '</td><td>' + headingarray[1];
+			founditems += '<tr><td><center>' + headingarray[0] + '</center></td><td>' + headingarray[1];
 			}
 		founditems += '</td></tr>';
 	}
