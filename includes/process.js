@@ -45,6 +45,29 @@ function getPage(sURL) {
    }
 }
 
+function meshSubheadings() {
+	var found = 0;
+	var headingarray = [];
+	resultarray = mesh_subheadings.split("\@");
+	founditems = '<table><tr><th>Abbreviation</th><th>Subheading</th></tr>\n';
+
+	for (x=0; x<=resultarray.length-1; x++) {
+		found += 1;
+		heading = resultarray[x];	
+		headingarray = heading.split("\t");
+
+		if (found % 2 == 0) {
+			founditems += '<tr><td style="background: #c6d6ee;">' + headingarray[0] + '</td><td style="background: #c6d6ee;">' + headingarray[1];
+			}
+			else
+			{
+			founditems += '<tr><td>' + headingarray[0] + '</td><td>' + headingarray[1];
+			}
+		founditems += '</td></tr>';
+	}
+	founditems += '</table><p />'
+	document.getElementById('results').innerHTML = founditems;
+}
 function extractRow(found, row) {
 	tablestring = '';
 	fullstring = '';
