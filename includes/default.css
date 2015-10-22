@@ -32,6 +32,9 @@ table {
 a {
 	text-decoration: none;
 	}
+.blue {
+	color: blue;
+	}
 
 td {
 	font-weight: bold; 
