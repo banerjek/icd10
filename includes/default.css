@@ -63,3 +63,11 @@ h1 {
 	font-size: 18pt;
 	line-height: 50%;
 	}
+see:before {
+	content: "See: ";
+	font-style: italic;
+}
+sa:before {
+	content: "See also: ";
+	font-style: italic;
+}
