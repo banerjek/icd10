@@ -71,3 +71,7 @@ sa:before {
 	content: "See also: ";
 	font-style: italic;
 }
+
+t {
+	font-weight: bold;
+}

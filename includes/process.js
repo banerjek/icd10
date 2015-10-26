@@ -136,6 +136,33 @@ var weblink = '';
 var webbase = '';
 
 switch (search) {
+	case "icd10_index":
+		{
+		resultarray = icd10_index.split("\@");
+		founditems += '<table><tr><th>Search Results</th></tr>\n';
+
+		for (x=0; x<=resultarray.length-1; x++) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
+				found += 1;
+
+				if (found % 2 == 0) {
+					founditems += '<tr style="background: #c6d6ee;"><td><ul>' + resultarray[x];
+					}
+					else
+					{
+					founditems += '<tr><td><ul>' + resultarray[x];
+					}
+				}
+			}
+		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from NLM</b></center></td></tr></table>';
+
+    if (found == 0) {
+			founditems = notfound();
+			}
+
+		return founditems;
+		break;
+		}
 	case "mesh":
 		{
 		resultarray = mesh.split("\@");
