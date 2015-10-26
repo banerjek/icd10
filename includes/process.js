@@ -187,7 +187,7 @@ switch (search) {
 		}
 	case "diseases_and_injuries":
 		{
-		founditems = searchMarkedUpCodes(pcs);
+		founditems = searchMarkedUpCodes(diseases_and_injuries);
 		return founditems;
 		break;
 		}
