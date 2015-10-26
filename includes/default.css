@@ -63,6 +63,14 @@ h1 {
 	font-size: 18pt;
 	line-height: 50%;
 	}
+
+ul { 
+	margin-left: 15px;
+	margin-right: 0;
+	padding-left: 0; 
+	padding-right: 10px; }
+	}
+
 see:before {
 	content: "See: ";
 	font-style: italic;

@@ -50,6 +50,36 @@ function getPCS(code) {
 				return code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
 	}
 
+function searchMarkedUpCodes(codevariable) {
+		founditems = '';
+		found = 0;
+		resultarray = codevariable.split("\@");
+		founditems += '<table><tr><th>Search Results</th></tr>\n';
+
+		for (x=0; x<=resultarray.length-1; x++) {
+			if (searchEntry(userinput, resultarray[x]) == 1) {
+				found += 1;
+
+				if (found % 2 == 0) {
+					founditems += '<tr style="background: #c6d6ee;"><td>' + resultarray[x];
+					}
+					else
+					{
+					founditems += '<tr><td>' + resultarray[x];
+					}
+				founditems += '</td></tr>';
+				}
+			}
+		founditems += '</table>';
+		founditems = getPCS(founditems);
+
+    if (found == 0) {
+			founditems = notfound();
+			}
+
+		return founditems;
+		}
+
 function meshSubheadings() {
 	var found = 0;
 	var headingarray = [];
@@ -141,109 +171,23 @@ var weblink = '';
 var webbase = '';
 
 switch (search) {
-	case "icd10_index":
-		{
-		resultarray = icd10_index.split("\@");
-		founditems += '<table><tr><th>Search Results</th></tr>\n';
-
-		for (x=0; x<=resultarray.length-1; x++) {
-			if (searchEntry(userinput, resultarray[x]) == 1) {
-				found += 1;
-
-				if (found % 2 == 0) {
-					founditems += '<tr style="background: #c6d6ee;"><td><ul>' + resultarray[x];
-					}
-					else
-					{
-					founditems += '<tr><td><ul>' + resultarray[x];
-					}
-				}
-			}
-		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from NLM</b></center></td></tr></table>';
-		founditems = getPCS(founditems);
-
-    if (found == 0) {
-			founditems = notfound();
-			}
-
+	case "external":
+		founditems = searchMarkedUpCodes(external);
 		return founditems;
 		break;
-		}
 	case "mesh":
-		{
-		resultarray = mesh.split("\@");
-		founditems += '<table><tr><th>Search Results</th></tr>\n';
-
-		for (x=0; x<=resultarray.length-1; x++) {
-			if (searchEntry(userinput, resultarray[x]) == 1) {
-				found += 1;
-				heading = resultarray[x];	
-
-				webbase = 'http://www.nlm.nih.gov/cgi/mesh/2015/MB_cgi?term=';
-
-				id_url = '<a href="javascript:OpenWin(\'' + webbase
-					+ heading
-					+ '\');">'
-					+ heading
-					+ '</a></td></tr>'
-					+ '\n';
-
-				if (found % 2 == 0) {
-					founditems += '<tr style="background: #c6d6ee;"><td>' + id_url;
-					}
-					else
-					{
-					founditems += '<tr><td>'
-					+ id_url;
-					}
-				}
-			}
-		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from NLM</b></center></td></tr></table>';
-
-    if (found == 0) {
-			founditems = notfound();
-			}
-
+		founditems = searchMarkedUpCodes(mesh);
 		return founditems;
+		break;
+	case "pcs":
+		{
+		founditems = searchMarkedUpCodes(pcs);
+		return founditems
 		break;
 		}
 	case "diseases_and_injuries":
 		{
-		resultarray = diseases_and_injuries.split("\@");
-		founditems += '<table><tr><th>Search Results</th></tr>\n';
-
-		for (x=0; x<=resultarray.length-1; x++) {
-			if (searchEntry(userinput, resultarray[x]) == 1) {
-				found += 1;
-				heading = resultarray[x];	
-				splitheading = heading.split("\t");
-
-				webbase = 'https://www.cms.gov/medicare-coverage-database/staticpages/icd-10-code-lookup.aspx?KeyWord=';
-
-				id_url = '<a href="javascript:OpenWin(\'' + webbase
-					+ splitheading[0] 
-					+ '\');">'
-					+ splitheading[0] 
-					+ '</a> '
-					+ splitheading[1]
-					+ '</td></tr>'
-					+ '\n';
-
-				if (found % 2 == 0) {
-					founditems += '<tr style="background: #c6d6ee;"><td>' + id_url;
-					}
-					else
-					{
-					founditems += '<tr><td>'
-					+ id_url;
-					}
-				}
-			}
-		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from Medline</b></center></td></tr></table>';
-
-    if (found == 0) {
-			founditems = notfound();
-			}
+		founditems = searchMarkedUpCodes(pcs);
 		return founditems;
 		break;
 		}
