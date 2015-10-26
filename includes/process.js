@@ -45,6 +45,11 @@ function getPage(sURL) {
    }
 }
 
+function getPCS(code) {
+				//return code.replace(/<c>([^<]*)<\/c>/gi, "<a href=\"https:\/\/www.cms.gov\/medicare-coverage-database\/staticpages\/icd-10-code-lookup.aspx?KeyWord=$1\">$1<\/a>");
+				return code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
+	}
+
 function meshSubheadings() {
 	var found = 0;
 	var headingarray = [];
@@ -155,6 +160,7 @@ switch (search) {
 				}
 			}
 		founditems += '<tr><td><br /><center><b>Click on any field above for detailed information from NLM</b></center></td></tr></table>';
+		founditems = getPCS(founditems);
 
     if (found == 0) {
 			founditems = notfound();
