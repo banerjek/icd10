@@ -193,7 +193,7 @@ switch (search) {
 	case "pcs":
 		{
 		founditems = searchMarkedUpCodes(pcs);
-		founditems = suffixedCodes(founditems);
+		founditems = prependedCodes(founditems);
 		return founditems
 		break;
 		}
