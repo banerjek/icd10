@@ -45,11 +45,17 @@ function getPage(sURL) {
    }
 }
 
-function getPCS(code) {
-				//return code.replace(/<c>([^<]*)<\/c>/gi, "<a href=\"https:\/\/www.cms.gov\/medicare-coverage-database\/staticpages\/icd-10-code-lookup.aspx?KeyWord=$1\">$1<\/a>");
+function suffixedCodes(code) {
 				return code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
 	}
 
+function prependNLM(code) {
+				return code.replace(/<c>([^<]*)<\/c>/gi, "<a href=\"https:\/\/www.cms.gov\/medicare-coverage-database\/staticpages\/icd-10-code-lookup.aspx?KeyWord=$1\">$1<\/a> -- ");
+	}
+
+function prependedCodes(code) {
+				return code.replace(/(<c>[^<]*<\/c>)/gi, "$1 -- ");
+	}
 function searchMarkedUpCodes(codevariable) {
 		founditems = '';
 		found = 0;
@@ -71,7 +77,6 @@ function searchMarkedUpCodes(codevariable) {
 				}
 			}
 		founditems += '</table>';
-		founditems = getPCS(founditems);
 
     if (found == 0) {
 			founditems = notfound();
@@ -173,21 +178,25 @@ var webbase = '';
 switch (search) {
 	case "external":
 		founditems = searchMarkedUpCodes(external);
+		founditems = suffixedCodes(founditems);
 		return founditems;
 		break;
 	case "mesh":
 		founditems = searchMarkedUpCodes(mesh);
+		founditems = suffixedCodes(founditems);
 		return founditems;
 		break;
 	case "pcs":
 		{
 		founditems = searchMarkedUpCodes(pcs);
+		founditems = suffixedCodes(founditems);
 		return founditems
 		break;
 		}
 	case "diseases_and_injuries":
 		{
 		founditems = searchMarkedUpCodes(diseases_and_injuries);
+		founditems = prependedCodes(founditems);
 		return founditems;
 		break;
 		}
