@@ -71,11 +71,15 @@ ul {
 	padding-right: 10px; }
 	}
 
-see:before {
+ul ul see:before, ul see:before, see:before {
 	content: "See: ";
 	font-style: italic;
 }
-sa:before {
+ul ul use:before, ul use:before, use:before {
+	content: "Use: ";
+	font-style: italic;
+}
+ul ul sa:before, ul sa:before, sa:before {
 	content: "See also: ";
 	font-style: italic;
 }
