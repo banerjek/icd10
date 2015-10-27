@@ -71,17 +71,9 @@ ul {
 	padding-right: 10px; }
 	}
 
-ul ul see:before, ul see:before, see:before {
-	content: "See: ";
+see, use, sa {
 	font-style: italic;
-}
-ul ul use:before, ul use:before, use:before {
-	content: "Use: ";
-	font-style: italic;
-}
-ul ul sa:before, ul sa:before, sa:before {
-	content: "See also: ";
-	font-style: italic;
+	color: green;
 }
 
 t {
