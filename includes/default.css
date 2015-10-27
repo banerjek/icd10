@@ -69,12 +69,24 @@ ul {
 	margin-right: 0;
 	padding-left: 0; 
 	padding-right: 10px; }
-	}
 
 see, use, sa {
 	font-style: italic;
 	color: green;
+	margin-left: 15px;
+	display: block;
 }
+
+see:before {
+	content: "See: ";
+	}
+use:before {
+	content: "Use: ";
+	}
+sa:before {
+	content: "See also: ";
+	}
+
 
 t {
 	font-weight: bold;

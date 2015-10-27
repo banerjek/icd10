@@ -44,16 +44,9 @@ function getPage(sURL) {
          wind.opener = self;
    }
 }
-function fixCodes(input) {
-				input = input.replace(/<use>/g, "<i> Use: </i><use>");
-				input = input.replace(/<see>/g, "<i> See: </i><see>");
-				input = input.replace(/<sa>/g, "<i> See also:</i><sa>");
-				return input;
-}
 function suffixedCodes(code) {
 				code = code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
 				code = code.replace(/([A-Z][0-9]+[0-9\.\-]*)/g, "<c>$1</c>");
-				code = fixCodes(code);
 				return code;
 	}
 
@@ -64,7 +57,6 @@ function prependNLM(code) {
 function prependedCodes(code) {
 				code = code.replace(/(<c>[^<]*<\/c>)/gi, "$1 -- ");
 				code = code.replace(/([A-Z][0-9]+[0-9\.\-]*)/g, "<c>$1</c>");
-				code = fixCodes(code);
 				return code;
 	}
 function searchMarkedUpCodes(codevariable) {
