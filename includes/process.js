@@ -46,7 +46,9 @@ function getPage(sURL) {
 }
 
 function suffixedCodes(code) {
-				return code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
+				code = code.replace(/(<c>[^<]*<\/c>)/gi, " -- $1");
+				code = code.replace(/([A-Z][0-9]+[0-9\.\-]*)/g, "<c>$1</c>");
+				return code;
 	}
 
 function prependNLM(code) {
@@ -54,7 +56,9 @@ function prependNLM(code) {
 	}
 
 function prependedCodes(code) {
-				return code.replace(/(<c>[^<]*<\/c>)/gi, "$1 -- ");
+				code = code.replace(/(<c>[^<]*<\/c>)/gi, "$1 -- ");
+				code = code.replace(/([A-Z][0-9]+[0-9\.\-]*)/g, "<c>$1</c>");
+				return code;
 	}
 function searchMarkedUpCodes(codevariable) {
 		founditems = '';
