@@ -182,7 +182,7 @@ var webbase = '';
 switch (search) {
 	case "external":
 		founditems = searchMarkedUpCodes(external);
-		founditems = suffixedCodes(founditems);
+		founditems = prependedCodes(founditems);
 		return founditems;
 		break;
 	case "mesh":
