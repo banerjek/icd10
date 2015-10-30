@@ -3,7 +3,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<title>ICD-10 and MeSH Lookup</title> 
+<title>SIM -- MeSH, ICD-10, and SNOMED Lookup</title> 
 <META name="Author" content="Kyle Banerjee" />
 <META NAME="KEYWORDS" CONTENT="International Statistical Classification of Diseases Codes, Medical Subject Headings" />
 <META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -20,7 +20,8 @@
 					<input type="text" name="userinput" size="25" onKeyUp="process(document.f);self.focus();document.f.userinput.focus();" />
 					<input type="submit" value="Find It!">
 					<p />
-					<br /><input type="radio" name="searchtype" value="pcs" onClick="process(document.f);" checked />ICD-10-PCS Procedure codes
+					<br /><input type="radio" name="searchtype" value="snomed" onClick="process(document.f);" checked />SNOMED CT (US ed.)
+					<br /><input type="radio" name="searchtype" value="pcs" onClick="process(document.f);" />ICD-10-PCS Procedure codes
 					<br /><input type="radio" name="searchtype" value="external" onClick="process(document.f);" />ICD-10 External causes of injuries
 					<br /><input type="radio" name="searchtype" value="diseases_and_injuries" onClick="process(document.f);" />ICD-10-CM Diseases and injuries
 					<br /><input type="radio" name="searchtype" value="drugs" onClick="process(document.f);" />ICD-10 Drugs
@@ -29,8 +30,10 @@
 					<br /><input type="radio" name="searchtype" value="mesh" onClick="meshSubheadings();" />MeSH subheadings
 				</form>
 				<hr />
-				<center><h1>ICD-10 and MeSH Lookup</h1>
-								by <a href="http://alptown.com">Kyle Banerjee</a></center><br />
+				<center><h1>SNOMED ICD-10 MeSH<br />Lookup</h1>
+								by <a href="http://alptown.com">Kyle Banerjee</a><br />
+				<p />
+				<a class="blue" onClick="document.getElementById('results').innerHTML='<table border=\'0\'><tr><td><center><h1>Terms of Use</h1></center>I hate to state the obvious, but since we live in a ligitious society, I\'ll spell things out -- the free information you get off the internet is worth every penny that you paid for it. <p />Your use of this site demonstrates you accept that no party involved in the creation of this website is liable for any direct or indirect losses resulting from attempting to use this site. If you think anyone owes you anything because something didn\'t work out the way you wanted, you must not use this site. <p />Questions, comments, and complaints <a href=\'mailto:kyle.banerjee@gmail.com\'>are welcome</a>.</td></tr></table>'; return false;">Terms of use</a></center>
 </td></tr></table>
 <p />
 </div>
@@ -46,10 +49,11 @@
 <script language="javascript" src="includes/neoplasms.js"></script>
 <script language="javascript" src="includes/mesh.js"></script>
 <script language="javascript" src="includes/mesh_subheadings.js"></script>
+<script language="javascript" src="includes/snomed.js"></script>
 <script language="javascript">
 (function loadFixed() {
         var node = document.getElementById("results");
-        node.innerHTML='<table border="0"><tr><td><h1><br /><center>All data files loaded. Please enter a search</center></h1></td></tr></table>';
+				node.innerHTML='<table border="0"><tr><td><h1><br /><center>All data files loaded. Please enter a search</center><p /></h1><h2>Notice regarding use of SNOMED</h2>Some material in the UMLS Metathesaurus is from copyrighted sources of the respective copyright holders. Users of the UMLS Metathesaurus are solely responsible for compliance with any copyright, patent or trademark restrictions and are referred to the copyright, patent or trademark notices appearing in the original sources, all of which are hereby incorporated by reference.</td></tr></table>';
     })();
 </script>
 <script>

@@ -56,7 +56,7 @@ function prependNLM(code) {
 
 function prependedCodes(code) {
 				code = code.replace(/(<c>[^<]*<\/c>)/gi, "$1 -- ");
-				code = code.replace(/([A-Z][0-9]+[0-9\.\-]*)/g, "<c>$1</c>");
+				code = code.replace(/\(([A-Z][0-9]+[0-9\.\-]*)\)/g, "<c>$1</c>");
 				return code;
 	}
 function searchMarkedUpCodes(codevariable) {
@@ -68,7 +68,7 @@ function searchMarkedUpCodes(codevariable) {
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
 				found += 1;
-
+				
 				if (found % 2 == 0) {
 					founditems += '<tr style="background: #c6d6ee;"><td>' + resultarray[x];
 					}
@@ -179,6 +179,10 @@ var weblink = '';
 var webbase = '';
 
 switch (search) {
+	case "snomed":
+		founditems = searchMarkedUpCodes(snomed);
+		return founditems;
+		break;
 	case "external":
 		founditems = searchMarkedUpCodes(external);
 		founditems = prependedCodes(founditems);
