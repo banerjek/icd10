@@ -9,6 +9,7 @@ var charstrokes;
 var userinput;
 var lastuserinput = '';
 var lastsearch = '';
+var lastarray = [];
 var pastinput = [];
 var pastresults = [];
 var search;
@@ -40,12 +41,16 @@ function process(obj_f) {
 			// Compare with previous search
 			if (pastinput[userinput.length - 1] == userinput.substring(0, userinput.length - 1)) {
 				checkinput = 1;
+				} else {
+				checkinput = 0;
 				}
 			// return results from previously executed search if possible 
-			if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
-				document.getElementById('results').innerHTML = pastresults[userinput.length];
-				return;
-				} 
+			if (checksearch == 1 && checkinput == 1) {
+				if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
+					document.getElementById('results').innerHTML = pastresults[userinput.length];
+					return;
+					} 
+				}
 			}
 		if (checksearch == 0 || checkinput == 0){
 			clearvalues();
@@ -68,8 +73,8 @@ return;
 }
 
 function clearvalues() {
-				window.alert(checksearch + '-' + checkinput);
 	lastuserinput = '';
+	lastarray = [];
 	lastsearch = '';
 	pastinput = [];
 	pastresults = [];
@@ -106,11 +111,19 @@ function prependedCodes(code) {
 function searchMarkedUpCodes(codevariable) {
 		founditems = '';
 		found = 0;
-		resultarray = codevariable.split("\@");
+
+		if (lastarray.length > 0) {
+			resultarray = lastarray;
+			lastarray = [];
+			} else {
+			resultarray = codevariable.split("\@");
+			}
+
 		founditems += '<table><tr><th>Search Results</th></tr>\n';
 
 		for (x=0; x<=resultarray.length-1; x++) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
+				lastarray[found] = resultarray[x];
 				found += 1;
 				
 				if (found % 2 == 0) {
