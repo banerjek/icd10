@@ -34,6 +34,7 @@ function process(obj_f) {
 	}
 
   userinput = obj_f.userinput.value;
+	userinput.trim();
 
 	if (userinput.length > 2) {
 		if (lastuserinput.length > 2) {
@@ -236,7 +237,7 @@ screen
 ***********************************/
 
 function extract() {
-var resultarray = new Array();
+var resultarray =  Array();
 var cellarray = new Array();
 var founditems = '';
 var found = 0;
