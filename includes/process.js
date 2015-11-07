@@ -13,7 +13,6 @@ var lastarray = [];
 var pastinput = [];
 var pastresults = [];
 var search;
-var shortcut = 0;
 var checksearch = 0;
 var checkinput = 0;
 
@@ -36,25 +35,30 @@ function process(obj_f) {
 
   userinput = obj_f.userinput.value;
 
-	if (lastuserinput.length > 2) {
-		if (checksearch == 1) {
-			// Compare with previous search
-			if (pastinput[userinput.length - 1] == userinput.substring(0, userinput.length - 1)) {
-				checkinput = 1;
-				} else {
-				checkinput = 0;
+	if (userinput.length > 2) {
+		if (lastuserinput.length > 2) {
+			if (checksearch == 1) {
+				// Compare with previous search
+				if (pastinput[userinput.length - 1] == userinput.substring(0, userinput.length - 1)) {
+					checkinput = 1;
+					} else {
+					checkinput = 0;
+					}
+				// return results from previously executed search if possible 
+				if (checksearch == 1 && checkinput == 1) {
+					if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
+						document.getElementById('results').innerHTML = pastresults[userinput.length];
+						return;
+						} 
+					}
 				}
-			// return results from previously executed search if possible 
-			if (checksearch == 1 && checkinput == 1) {
-				if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
-					document.getElementById('results').innerHTML = pastresults[userinput.length];
-					return;
-					} 
-				}
+			if (checksearch == 0 || checkinput == 0){
+				clearvalues();
 			}
-		if (checksearch == 0 || checkinput == 0){
-			clearvalues();
 		}
+	} else {
+	document.getElementById('results').innerHTML = '<table><tr><th>Search Results</th></tr><tr><td>Please enter at least three characters</td></tr></table>';
+	return;
 	}
 
 	lastuserinput = userinput;
@@ -78,7 +82,6 @@ function clearvalues() {
 	lastsearch = '';
 	pastinput = [];
 	pastresults = [];
-	shortcut = 0;
 	checksearch = 0;
 	checkinput = 0;
 	}	
