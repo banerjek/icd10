@@ -201,19 +201,23 @@ function searchEntry(userinput, entry) {
 	terms = userinput.split(" ");
 	returnfound = 0;
 
+	if (terms[0].length > 2) {
+		if (entry.indexOf(terms[0]) > -1) {
+			returnfound = 1;
 
-	for (foundit = 0; foundit < terms.length; foundit++) {
-		if (terms[foundit].length > 2) {
-			// regex is too slow so we use strings
-			if (entry.indexOf(terms[foundit]) > -1) {
-				returnfound = 1;
-			}
-			else {
-				returnfound = 0;	
-				break;
+			for (foundit = 1; foundit < terms.length; foundit++) {
+				if (entry.indexOf(terms[foundit]) > -1) {
+					returnfound = 1;
+					} else {
+						returnfound = 0;	
+						break;
+						}
+					}
+
+			} else {
+			returnfound = 0;	
 			}
 		}
-	}
 
 return returnfound;
 }
