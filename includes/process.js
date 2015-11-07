@@ -7,7 +7,14 @@ are known as a gac search in this form
 
 var charstrokes;
 var userinput;
+var lastuserinput = '';
+var lastsearch = '';
+var pastinput = [];
+var pastresults = [];
 var search;
+var shortcut = 0;
+var checksearch = 0;
+var checkinput = 0;
 
 function process(obj_f) {
 
@@ -17,10 +24,36 @@ function process(obj_f) {
 	if (obj_f.searchtype[x].checked) {
 	  search = obj_f.searchtype[x].value;
 	  x = 10;
+		if (lastsearch == search) {
+			checksearch = 1;
+			} else {
+			clearvalues();	
+			}
+		lastsearch = search;
 	  }
 	}
 
   userinput = obj_f.userinput.value;
+
+	if (lastuserinput.length > 2) {
+		if (checksearch == 1) {
+			// Compare with previous search
+			if (pastinput[userinput.length - 1] == userinput.substring(0, userinput.length - 1)) {
+				checkinput = 1;
+				}
+			// return results from previously executed search if possible 
+			if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
+				document.getElementById('results').innerHTML = pastresults[userinput.length];
+				return;
+				} 
+			}
+		if (checksearch == 0 || checkinput == 0){
+			clearvalues();
+		}
+	}
+
+	lastuserinput = userinput;
+	pastinput[userinput.length] = userinput;
 
 	switch (search) {
 	  	default:
@@ -33,6 +66,17 @@ function process(obj_f) {
 return;
 
 }
+
+function clearvalues() {
+				window.alert(checksearch + '-' + checkinput);
+	lastuserinput = '';
+	lastsearch = '';
+	pastinput = [];
+	pastresults = [];
+	shortcut = 0;
+	checksearch = 0;
+	checkinput = 0;
+	}	
 
 function getPage(sURL) {
 
@@ -144,6 +188,7 @@ function searchEntry(userinput, entry) {
 	terms = userinput.split(" ");
 	returnfound = 0;
 
+
 	for (foundit = 0; foundit < terms.length; foundit++) {
 		if (terms[foundit].length > 2) {
 			// regex is too slow so we use strings
@@ -181,22 +226,26 @@ var webbase = '';
 switch (search) {
 	case "snomed":
 		founditems = searchMarkedUpCodes(snomed);
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 	case "external":
 		founditems = searchMarkedUpCodes(external);
 		founditems = prependedCodes(founditems);
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 	case "mesh":
 		founditems = searchMarkedUpCodes(mesh);
 		founditems = suffixedCodes(founditems);
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 	case "pcs":
 		{
 		founditems = searchMarkedUpCodes(pcs);
 		founditems = prependedCodes(founditems);
+		pastresults[userinput.length] = founditems;
 		return founditems
 		break;
 		}
@@ -204,6 +253,7 @@ switch (search) {
 		{
 		founditems = searchMarkedUpCodes(diseases_and_injuries);
 		founditems = prependedCodes(founditems);
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 		}
@@ -229,6 +279,7 @@ switch (search) {
     if (found == 0) {
 			founditems = notfound();
 			}
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 		}
@@ -254,6 +305,7 @@ switch (search) {
     if (found == 0) {
 			founditems = notfound();
 			}
+		pastresults[userinput.length] = founditems;
 		return founditems;
 		break;
 		}
@@ -288,5 +340,5 @@ function render(body) {
   + body
   +'</body></html>'
  )
- searchresults.document.close()
+ searchresults.document.close();
 }
