@@ -12,6 +12,7 @@ var lastsearch = '';
 var lastarray = [];
 var pastinput = [];
 var pastresults = {};
+var pastarrays = {};
 var search;
 var checksearch = 0;
 var checkinput = 0;
@@ -42,6 +43,7 @@ function process(obj_f) {
 				if (checksearch == 1) {
 					if (pastresults[userinput]) {
 						document.getElementById('results').innerHTML = pastresults[userinput];
+						lastarray = pastarrays[userinput];
 						return;
 						} 
 					}
@@ -83,6 +85,7 @@ function clearvalues() {
 	lastsearch = '';
 	pastinput = [];
 	pastresults = {};
+	pastarrays = {};
 	checksearch = 0;
 	checkinput = 0;
 	}	
@@ -145,7 +148,7 @@ function searchMarkedUpCodes(codevariable) {
     if (found == 0) {
 			founditems = notfound();
 			}
-
+		pastarrays[userinput] = lastarray;
 		return founditems;
 		}
 
