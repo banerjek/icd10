@@ -11,7 +11,7 @@ var lastuserinput = '';
 var lastsearch = '';
 var lastarray = [];
 var pastinput = [];
-var pastresults = [];
+var pastresults = {};
 var search;
 var checksearch = 0;
 var checkinput = 0;
@@ -38,19 +38,19 @@ function process(obj_f) {
 
 	if (userinput.length > 2) {
 		if (lastuserinput.length > 2) {
+				// return results from previously executed search if possible 
+				if (checksearch == 1) {
+					if (pastresults[userinput]) {
+						document.getElementById('results').innerHTML = pastresults[userinput];
+						return;
+						} 
+					}
 			if (checksearch == 1) {
 				// Compare with previous search
 				if (pastinput[userinput.length - 1] == userinput.substring(0, userinput.length - 1)) {
 					checkinput = 1;
 					} else {
 					checkinput = 0;
-					}
-				// return results from previously executed search if possible 
-				if (checksearch == 1 && checkinput == 1) {
-					if (pastinput[userinput.length] == userinput.substring(0, userinput.length)) {
-						document.getElementById('results').innerHTML = pastresults[userinput.length];
-						return;
-						} 
 					}
 				}
 			if (checksearch == 0 || checkinput == 0){
@@ -82,7 +82,7 @@ function clearvalues() {
 	lastarray = [];
 	lastsearch = '';
 	pastinput = [];
-	pastresults = [];
+	pastresults = {};
 	checksearch = 0;
 	checkinput = 0;
 	}	
@@ -247,26 +247,26 @@ var webbase = '';
 switch (search) {
 	case "snomed":
 		founditems = searchMarkedUpCodes(snomed);
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 	case "external":
 		founditems = searchMarkedUpCodes(external);
 		founditems = prependedCodes(founditems);
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 	case "mesh":
 		founditems = searchMarkedUpCodes(mesh);
 		founditems = suffixedCodes(founditems);
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 	case "pcs":
 		{
 		founditems = searchMarkedUpCodes(pcs);
 		founditems = prependedCodes(founditems);
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems
 		break;
 		}
@@ -274,7 +274,7 @@ switch (search) {
 		{
 		founditems = searchMarkedUpCodes(diseases_and_injuries);
 		founditems = prependedCodes(founditems);
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 		}
@@ -300,7 +300,7 @@ switch (search) {
     if (found == 0) {
 			founditems = notfound();
 			}
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 		}
@@ -326,7 +326,7 @@ switch (search) {
     if (found == 0) {
 			founditems = notfound();
 			}
-		pastresults[userinput.length] = founditems;
+		pastresults[userinput] = founditems;
 		return founditems;
 		break;
 		}
