@@ -156,6 +156,7 @@ function searchMarkedUpCodes(codevariable) {
 			founditems = notfound();
 			}
 		pastarrays[userinput] = lastarray;
+
 		return founditems;
 		}
 
