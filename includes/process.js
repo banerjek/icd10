@@ -132,17 +132,23 @@ function searchMarkedUpCodes(codevariable) {
 			if (searchEntry(userinput, resultarray[x]) == 1) {
 				lastarray[found] = resultarray[x];
 				found += 1;
-				
-				if (found % 2 == 0) {
-					founditems += '<tr style="background: #c6d6ee;"><td>' + resultarray[x];
+			
+				if (found < 500) {	
+					if (found % 2 == 0) {
+						founditems += '<tr style="background: #c6d6ee;"><td>' + resultarray[x] + '</td></tr>';
+						}
+						else
+						{
+						founditems += '<tr><td>' + resultarray[x] + '</td></tr>';
+						}
 					}
-					else
-					{
-					founditems += '<tr><td>' + resultarray[x];
-					}
-				founditems += '</td></tr>';
 				}
 			}
+
+		if (found >= 500) {
+					founditems += '<tr><td></center><h2>' + found + ' retrievals. Displaying first 500</h2></center></td></tr>';
+		}
+
 		founditems += '</table>';
 
     if (found == 0) {
@@ -163,15 +169,19 @@ function meshSubheadings() {
 		heading = resultarray[x];	
 		headingarray = heading.split("\t");
 
-		if (found % 2 == 0) {
-			founditems += '<tr><td style="background: #c6d6ee;"><center>' + headingarray[0] + '</center></td><td style="background: #c6d6ee;">' + headingarray[1];
-			}
-			else
-			{
-			founditems += '<tr><td><center>' + headingarray[0] + '</center></td><td>' + headingarray[1];
-			}
-		founditems += '</td></tr>';
+		if (found < 500) {
+			if (found % 2 == 0) {
+				founditems += '<tr><td style="background: #c6d6ee;"><center>' + headingarray[0] + '</center></td><td style="background: #c6d6ee;">' + headingarray[1] + '</td></tr>';
+				}
+				else
+				{
+				founditems += '<tr><td><center>' + headingarray[0] + '</center></td><td>' + headingarray[1] + '</td></tr>';
+				}
+		}
 	}
+		if (found >= 500) {
+			founditems += '<tr><td></center><h2>' + found + ' retrievals. Displaying first 500</h2></center></td></tr>';
+			}
 	founditems += '</table><p />'
 	document.getElementById('results').innerHTML = founditems;
 }
