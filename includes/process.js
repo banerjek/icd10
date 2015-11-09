@@ -124,7 +124,6 @@ function searchMarkedUpCodes(codevariable) {
 			lastarray = [];
 			} else {
 			resultarray = codevariable.split("\@");
-			lastarray = resultarray;
 			}
 
 		founditems += '<table><tr><th>Search Results</th></tr>\n';
