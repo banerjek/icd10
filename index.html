@@ -28,6 +28,7 @@
 					<br /><input type="radio" name="searchtype" value="neoplasms" onClick="process(document.f);" />ICD-10 Neoplasms 
 					<br /><input type="radio" name="searchtype" value="mesh" onClick="process(document.f);" />MeSH
 					<br /><input type="radio" name="searchtype" value="mesh" onClick="meshSubheadings();" />MeSH subheadings
+					<br /><input type="radio" name="searchtype" value="nlm" onClick="process(document.f);" />NLM Classification <em>NEW</em>
 				</form>
 				<hr />
 				<center><h1>SNOMED ICD-10 MeSH<br />Lookup</h1>
@@ -50,6 +51,7 @@
 <script language="javascript" src="includes/mesh.js"></script>
 <script language="javascript" src="includes/mesh_subheadings.js"></script>
 <script language="javascript" src="includes/snomed.js"></script>
+<script language="javascript" src="includes/nlm.js"></script>
 <script language="javascript">
 (function loadFixed() {
         var node = document.getElementById("results");

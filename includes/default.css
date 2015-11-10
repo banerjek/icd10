@@ -86,6 +86,9 @@ sa:before {
 	content: "See also: ";
 	}
 
+em {
+	background-color: yellow;
+	}
 
 t {
 	font-weight: bold;

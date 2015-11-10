@@ -276,6 +276,12 @@ switch (search) {
 		pastresults[userinput] = founditems;
 		return founditems;
 		break;
+	case "nlm":
+		founditems = searchMarkedUpCodes(nlm);
+		founditems = suffixedCodes(founditems);
+		pastresults[userinput] = founditems;
+		return founditems;
+		break;
 	case "pcs":
 		{
 		founditems = searchMarkedUpCodes(pcs);
