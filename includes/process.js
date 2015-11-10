@@ -278,7 +278,7 @@ switch (search) {
 		break;
 	case "nlm":
 		founditems = searchMarkedUpCodes(nlm);
-		founditems = suffixedCodes(founditems);
+		founditems = founditems.replace(/(<c>[^<]*<\/c>)/gi, " -- $1"); 
 		pastresults[userinput] = founditems;
 		return founditems;
 		break;
